@@ -2,10 +2,8 @@ package main
 
 import (
 	"html/template"
-	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
 )
 
 type PageVariables struct {
@@ -13,9 +11,6 @@ type PageVariables struct {
 }
 
 func main() {
-	res, _ := http.Get("https://api.ipify.org")
-	ip, _ := ioutil.ReadAll(res.Body)
-	os.Stdout.Write(ip)
 	http.HandleFunc("/", HomePage)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
